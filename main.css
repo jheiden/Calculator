@@ -1,0 +1,110 @@
+
+
+body, html {
+    margin: 0px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#content {
+   padding-bottom: 50px;
+   background: #466368;
+   background: linear-gradient(to right bottom, #4397cfc7, #499699);
+   text-align: center;
+}
+
+div {
+    border: 2px solid black;
+}
+
+p {
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+.display {
+    height: 20px;
+    grid-column: 1 / -1;
+    padding: 30px;
+    background: #3b3b1be3;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.h2_display {
+    padding: 0px;
+    font-size: 40px;
+    margin: 0px;
+    color: whitesmoke;
+    
+}
+
+.buttonwrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    grid-gap: 10px;
+    width: 380px;
+    height: 500px;
+    margin-top: 60px;
+    margin-left: 32%;
+    padding: 20px;
+    background: #2b77a3e3;
+    border-radius: 20px;
+    box-shadow: 4px 2px 4px 4px rgba(19, 18, 19, 0.822);
+}
+
+#freespace {
+    grid-column: 1/-1;
+    padding: 10px;
+    border: 0px;
+}
+
+
+.funcbtn {
+    border-radius: 10px;
+    background-color: #a17026d5;
+    box-shadow: 2px 2px #252E2B;
+}
+
+
+.num {
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 2px 2px #252E2B;
+    background: rgba(50, 92, 107, 0.699);
+}
+
+
+.operator {
+    border-radius: 10px;
+    background: #0f7174c0;
+    box-shadow: 2px 2px #252E2B;
+    padding: 5px;
+}
+    
+.equals {
+    border-radius: 10px;
+    background: #0f7174c0;
+    box-shadow: 2px 2px #252E2B;
+    padding: 5px;
+}
+
+
+.num:hover {
+    opacity: 0.6;
+
+}
+
+.funcbtn:hover {
+    opacity: 0.6;
+
+}
+
+.operator:hover {
+    opacity: 0.6;
+
+}
