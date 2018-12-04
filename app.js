@@ -1,21 +1,32 @@
 // NTS : Build separate functions for evaluating user input and return error if wrong..
 
 let arrayValues = [];
+let currentOperator = "";
 
 const display = document.querySelector(".h2_display");
 
 const nums = document.querySelectorAll(".num");
 nums.forEach(num =>
   num.addEventListener("click", () => {
-    populateArray(num.textContent);
     activateDisplay(num.textContent);
   })
 );
 
+const backspacebt = document.querySelector(".bspace");
+backspacebt.addEventListener("click", () => {
+  if (display.textContent === "") {
+    return display.textContent = "";
+  } else {
+    arrayValues.pop();
+    //arrayValues.length = arrayValues.length - 1;
+    display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+  }
+});
+
 const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
-    populateArray(oper.textContent);
+    populateArray(display.textContent);
     activateDisplay(oper.textContent);
   });
 });
@@ -23,15 +34,6 @@ operators.forEach(oper => {
 const equalsbtn = document.querySelector(".equals");
 equalsbtn.addEventListener("click", () => calculate(arrayValues));
 
-const backspacebt = document.querySelector(".bspace");
-backspacebt.addEventListener("click", () => {
-  if (arrayValues.length === 0) {
-    return arrayValues.length = 0;
-  } else {
-    arrayValues.length = arrayValues.length - 1;
-    display.textContent = display.textContent.slice(0, display.textContent.length - 1);
-  }
-});
 
 const clearbtn = document.querySelector(".clearbtn");
 clearbtn.addEventListener("click", () => {
@@ -56,10 +58,10 @@ function populateArray(items) {
 }
 
 // called when EQUAL is hit
-function calculate() {
-  let result = eval(arrayValues.join(""));
-  display.textContent = result
-  arrayValues = [result];
+function calculate () {
+  
+ 
+  // arrayValues = [result];
   //calculate new display value from input ARR
   //update ui
   //input ARR should be empty at this point
