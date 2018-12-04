@@ -45,21 +45,28 @@ const divide = (a, b) => a / b;
 // called when EQUAL is hit
 function calculate () {
   const splitInput = inputStorage.split(/([-+/*])/gi)
+  
   if (splitInput.includes('+', 0)) {
-    result = add(parseInt(splitInput[0]), parseInt(splitInput[2]));
+    result += add(parseInt(splitInput[0]), parseInt(splitInput[2]));
+    display.textContent = result;
     console.log(result);
   }
   if (splitInput.includes('-', 0)) {
     result = subtract(parseInt(splitInput[0]), parseInt(splitInput[2]));
+    display.textContent = result;
     console.log(result);
   }
   if (splitInput.includes('*', 0)) {
     result = multiply(parseInt(splitInput[0]), parseInt(splitInput[2]));
+    display.textContent = result;
+    console.log(result);
+  }
+  if (splitInput.includes('/', 0)) {
+    result = divide(parseInt(splitInput[0]), parseInt(splitInput[2]));
+    display.textContent = result;
     console.log(result);
   }
   
-
-
   
   
   // arrayValues = [result];
