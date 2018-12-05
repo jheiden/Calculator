@@ -11,6 +11,7 @@ nums.forEach(num =>
     // Populates display / valuestorage with numbers
     inputStorage += num.textContent;
     display.textContent += num.textContent;
+  
   })
 );
 
@@ -96,22 +97,22 @@ function calculate() {
 
     if (splitInput.includes("+", 0)) {
       result = add(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result;
+      display.textContent = result.toFixed(2);
       inputStorage = result;
     }
     if (splitInput.includes("-", 0)) {
       result = subtract(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result;
+      display.textContent = result.toFixed(2);
       inputStorage = result;
     }
     if (splitInput.includes("*", 0)) {
       result = multiply(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result;
+      display.textContent = result.toFixed(2);
       inputStorage = result;
     } 
     if (splitInput.includes("/", 0)) {
       result = divide(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result;
+      display.textContent = result.toFixed(2);
       inputStorage = result;
     }
   }

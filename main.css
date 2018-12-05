@@ -9,9 +9,9 @@ body, html {
 
 #content {
    padding-bottom: 50px;
-   background: #466368;
-   background: linear-gradient(to right bottom, #4397cfc7, #499699);
+   background: linear-gradient(to right bottom, #cf9e43c7, #499699);
    text-align: center;
+
 }
 
 div {
@@ -54,7 +54,7 @@ p {
     grid-template-rows: repeat(9, 1fr);
     grid-gap: 10px;
     width: 380px;
-    height: 500px;
+    height: 480px;
     margin-top: 60px;
     margin-left: 32%;
     padding: 20px;
@@ -89,11 +89,16 @@ p {
     
 .equals {
     border-radius: 10px;
-    background: #0f7174c0;
+    background: #1a29af44;
     box-shadow: 2px 2px #252E2B;
     padding: 5px;
 }
 
+.dot {
+    background: #1a29af44;
+
+
+}
 
 .num:hover {
     opacity: 0.6;
