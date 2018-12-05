@@ -15,74 +15,89 @@ nums.forEach(num =>
 
 const backspacebt = document.querySelector(".bspace");
 backspacebt.addEventListener("click", () => backspace());
-  
+
 const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
-    inputStorage += oper.textContent;
-    display.textContent += oper.textContent;
-  
+    if (!display.textContent.length) {
+      // do not allow input to start with an operator (evaluate to falsy)
+      return;
+    } else {
+      inputStorage += oper.textContent;
+      display.textContent += oper.textContent;
+    }
   });
 });
 
 const equalsbtn = document.querySelector(".equals");
 equalsbtn.addEventListener("click", () => {
-  calculate();
-  
-  });
+  evaluateInput();
+});
 
 const clearbtn = document.querySelector(".clearbtn");
 clearbtn.addEventListener("click", () => {
   clear();
 });
 
-const add = (a,b) => a + b;
+function clear() {
+  display.textContent = "";
+  inputStorage = "";
+}
+
+function backspace() {
+  if (typeof inputStorage === "number") {
+    // If user clicked equals (result as number) then work as clear function
+    clear();
+  } else {
+    inputStorage = inputStorage.slice(0, inputStorage.length - 1);
+    display.textContent = display.textContent.slice(
+      0,
+      display.textContent.length - 1
+    );
+  }
+}
+
+// "Transitfunction" to calculate. Input evaluated here for errors before invoking calculate.
+function evaluateInput() {
+  const illegalInput = inputStorage.match(/^(\d+[\+\-\*\/]{1})+\d+$/);
+  if (!illegalInput) {
+    display.textContent = "Error";
+    inputStorage = "";
+    return;
+  } else {
+    calculate();
+  }
+}
+
+// Basic functionality
+const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-
-// called when EQUAL is hit
-function calculate () {
-  const splitInput = inputStorage.split(/([-+/*])/gi)
-  
-  if (splitInput.includes('+', 0)) {
-    result += add(parseInt(splitInput[0]), parseInt(splitInput[2]));
-    display.textContent = result;
-    console.log(result);
+// Function flow controls where to route the call depending on operator value in global function.
+function calculate() {
+  const splitInput = inputStorage.split(/([-+/*])/gi);
+  for (let i = 0; i < splitInput.length; i++) {
+    if (splitInput.includes("+", 0)) {
+      result = add(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      display.textContent = result;
+      inputStorage = result;
+    }
+    if (splitInput.includes("-", 0)) {
+      result = subtract(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      display.textContent = result;
+      inputStorage = result;
+    }
+    if (splitInput.includes("*", 0)) {
+      result = multiply(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      display.textContent = result;
+      inputStorage = result;
+    } 
+    if (splitInput.includes("/", 0)) {
+      result = divide(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      display.textContent = result;
+      inputStorage = result;
+    }
   }
-  if (splitInput.includes('-', 0)) {
-    result = subtract(parseInt(splitInput[0]), parseInt(splitInput[2]));
-    display.textContent = result;
-    console.log(result);
-  }
-  if (splitInput.includes('*', 0)) {
-    result = multiply(parseInt(splitInput[0]), parseInt(splitInput[2]));
-    display.textContent = result;
-    console.log(result);
-  }
-  if (splitInput.includes('/', 0)) {
-    result = divide(parseInt(splitInput[0]), parseInt(splitInput[2]));
-    display.textContent = result;
-    console.log(result);
-  }
-  
-  
-  
-  // arrayValues = [result];
-  //calculate new display value from input ARR
-  //update ui
-  //input ARR should be empty at this point
 }
-
-function clear () {
-  display.textContent = "";
- inputStorage = "";
-}
-
-function backspace () {
-  inputStorage = inputStorage.slice(0, (inputStorage.length -1));
-  display.textContent = display.textContent.slice(0, (display.textContent.length - 1));
-}
-
-
