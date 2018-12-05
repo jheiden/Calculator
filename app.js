@@ -30,8 +30,14 @@ operators.forEach(oper => {
 });
 
 const equalsbtn = document.querySelector(".equals");
+
 equalsbtn.addEventListener("click", () => {
+  if (!display.textContent.match(/^(\d+[\+\-\*\/]{1})+\d+$/)) {
+    // do not allow calculation on invalid input from user. "locks" equals button.
+    return
+  } else {
   evaluateInput();
+}
 });
 
 const clearbtn = document.querySelector(".clearbtn");
@@ -57,10 +63,10 @@ function backspace() {
   }
 }
 
-// "Transitfunction" to calculate. Input evaluated here for errors before invoking calculate.
+// Works like a "transit" to calculate(). Errorchecking before invoking calculate();
 function evaluateInput() {
-  const illegalInput = inputStorage.match(/^(\d+[\+\-\*\/]{1})+\d+$/);
-  if (!illegalInput) {
+  const correctInput = inputStorage.match(/^(\d+[\+\-\*\/]{1})+\d+$/);
+  if (!correctInput) {
     display.textContent = "Error";
     inputStorage = "";
     return;
