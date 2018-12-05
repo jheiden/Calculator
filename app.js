@@ -8,6 +8,7 @@ const display = document.querySelector(".h2_display");
 const nums = document.querySelectorAll(".num");
 nums.forEach(num =>
   num.addEventListener("click", () => {
+    // Populates display / valuestorage with numbers
     inputStorage += num.textContent;
     display.textContent += num.textContent;
   })
@@ -20,7 +21,7 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
     if (!display.textContent.length) {
-      // do not allow input to start with an operator (evaluate to falsy)
+      // do not allow input to start with an operator (zero evaluates to falsy)
       return;
     } else {
       inputStorage += oper.textContent;
@@ -30,9 +31,8 @@ operators.forEach(oper => {
 });
 
 const equalsbtn = document.querySelector(".equals");
-
 equalsbtn.addEventListener("click", () => {
-  if (!display.textContent.match(/^(\d+[\+\-\*\/]{1})+\d+$/)) {
+  if (!display.textContent.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/)) {
     // do not allow calculation on invalid input from user. "locks" equals button.
     return
   } else {
@@ -44,7 +44,7 @@ const clearbtn = document.querySelector(".clearbtn");
 clearbtn.addEventListener("click", () => {
   clear();
 });
-
+// clear display , clear values
 function clear() {
   display.textContent = "";
   inputStorage = "";
@@ -63,9 +63,9 @@ function backspace() {
   }
 }
 
-// Works like a "transit" to calculate(). Errorchecking before invoking calculate();
+// Works like a "transit" to calculate(). Errorchecking before invoking calculate
 function evaluateInput() {
-  const correctInput = inputStorage.match(/^(\d+[\+\-\*\/]{1})+\d+$/);
+  const correctInput = inputStorage.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/);
   if (!correctInput) {
     display.textContent = "Error";
     inputStorage = "";
@@ -81,27 +81,36 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
+
+function prettyResult (aStr) {
+ // IDK yet what to do with these function
+ 
+}
+
 // Function flow controls where to route the call depending on operator value in global function.
 function calculate() {
+  
   const splitInput = inputStorage.split(/([-+/*])/gi);
+
   for (let i = 0; i < splitInput.length; i++) {
+
     if (splitInput.includes("+", 0)) {
-      result = add(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      result = add(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result;
       inputStorage = result;
     }
     if (splitInput.includes("-", 0)) {
-      result = subtract(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      result = subtract(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result;
       inputStorage = result;
     }
     if (splitInput.includes("*", 0)) {
-      result = multiply(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      result = multiply(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result;
       inputStorage = result;
     } 
     if (splitInput.includes("/", 0)) {
-      result = divide(parseInt(splitInput[0]), parseInt(splitInput[2]));
+      result = divide(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result;
       inputStorage = result;
     }

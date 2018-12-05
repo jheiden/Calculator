@@ -38,8 +38,14 @@ p {
     padding: 0px;
     font-size: 40px;
     margin: 0px;
-    color: whitesmoke;
+    color: blanchedalmond;
+    overflow: hidden;
     
+}
+
+.freespace {
+    
+
 }
 
 .buttonwrap {
@@ -57,11 +63,6 @@ p {
     box-shadow: 4px 2px 4px 4px rgba(19, 18, 19, 0.822);
 }
 
-#freespace {
-    grid-column: 1/-1;
-    padding: 10px;
-    border: 0px;
-}
 
 
 .funcbtn {
