@@ -3,26 +3,29 @@
 body, html {
     margin: 0px;
     font-family: sans-serif;
-    font-size: 20px;
-    font-weight: bolder;
+    
 }
 
 #content {
    padding-bottom: 50px;
+   padding-top: 50px;
    background: linear-gradient(to right bottom, #cf9e43c7, #499699);
-   text-align: center;
+   
 
 }
 
-div {
+button {
     border: 2px solid black;
+    
 }
 
 p {
-    margin-top: 15px;
-    margin-left: 0px;
-    margin-bottom: 0px;
+    font-weight: bolder; font-size: 14px;
+    border: 1px solid black; 
+    box-shadow: 2px 2px 4px 2px rgba(19, 18, 19, 0.822);
 }
+
+
 
 .display {
     height: 20px;
@@ -43,19 +46,12 @@ p {
     
 }
 
-.freespace {
-    
 
-}
 
 .buttonwrap {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    grid-gap: 10px;
-    width: 380px;
-    height: 480px;
-    margin-top: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr) ); grid-template-rows: repeat(6, 1fr); grid-gap: 10px;
+    width: 380px; height: 480px;
     margin-left: 32%;
     padding: 20px;
     background: #2b77a3e3;
@@ -77,6 +73,9 @@ p {
     padding: 5px;
     box-shadow: 2px 2px #252E2B;
     background: rgba(50, 92, 107, 0.699);
+    font-size: 16px;
+    font-weight: bolder;
+    
 }
 
 
@@ -92,13 +91,9 @@ p {
     background: #1a29af44;
     box-shadow: 2px 2px #252E2B;
     padding: 5px;
+    grid-column: 2 / 4;
 }
 
-.dot {
-    background: #1a29af44;
-
-
-}
 
 .num:hover {
     opacity: 0.6;

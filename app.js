@@ -11,7 +11,6 @@ nums.forEach(num =>
     // Populates display / valuestorage with numbers
     inputStorage += num.textContent;
     display.textContent += num.textContent;
-  
   })
 );
 
@@ -21,30 +20,22 @@ backspacebt.addEventListener("click", () => backspace());
 const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
-    if (!display.textContent.length) {
-      // do not allow input to start with an operator (zero evaluates to falsy)
-      return;
-    } else {
-      inputStorage += oper.textContent;
-      display.textContent += oper.textContent;
-    }
+    inputStorage += oper.textContent;
+    display.textContent += oper.textContent;
   });
 });
 
 const equalsbtn = document.querySelector(".equals");
 equalsbtn.addEventListener("click", () => {
-  if (!display.textContent.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/)) {
-    // do not allow calculation on invalid input from user. "locks" equals button.
-    return
-  } else {
   evaluateInput();
-}
+  
 });
 
 const clearbtn = document.querySelector(".clearbtn");
 clearbtn.addEventListener("click", () => {
   clear();
 });
+
 // clear display , clear values
 function clear() {
   display.textContent = "";
@@ -82,19 +73,17 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-
-function prettyResult (aStr) {
- // IDK yet what to do with these function
- 
+function prettyResult(aStr) {
+  // IDK yet what to do with this function
 }
 
 // Function flow controls where to route the call depending on operator value in global function.
+
+
 function calculate() {
-  
   const splitInput = inputStorage.split(/([-+/*])/gi);
 
   for (let i = 0; i < splitInput.length; i++) {
-
     if (splitInput.includes("+", 0)) {
       result = add(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result.toFixed(2);
@@ -109,7 +98,7 @@ function calculate() {
       result = multiply(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result.toFixed(2);
       inputStorage = result;
-    } 
+    }
     if (splitInput.includes("/", 0)) {
       result = divide(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
       display.textContent = result.toFixed(2);
