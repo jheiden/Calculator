@@ -9,6 +9,7 @@ const nums = document.querySelectorAll(".num");
 nums.forEach(num =>
   num.addEventListener("click", () => {
     // Populates display / valuestorage with numbers
+
     inputStorage += num.textContent;
     display.textContent += num.textContent;
   })
@@ -20,6 +21,8 @@ backspacebt.addEventListener("click", () => backspace());
 const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
+    // Populates display / valuestorage with operators
+  
     inputStorage += oper.textContent;
     display.textContent += oper.textContent;
   });
@@ -28,7 +31,6 @@ operators.forEach(oper => {
 const equalsbtn = document.querySelector(".equals");
 equalsbtn.addEventListener("click", () => {
   evaluateInput();
-  
 });
 
 const clearbtn = document.querySelector(".clearbtn");
@@ -79,30 +81,29 @@ function prettyResult(aStr) {
 
 // Function flow controls where to route the call depending on operator value in global function.
 
-
 function calculate() {
   const splitInput = inputStorage.split(/([-+/*])/gi);
+  const numA = parseFloat(splitInput[0]);
+  const numB = parseFloat(splitInput[2]);
 
-  for (let i = 0; i < splitInput.length; i++) {
-    if (splitInput.includes("+", 0)) {
-      result = add(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result.toFixed(2);
-      inputStorage = result;
-    }
-    if (splitInput.includes("-", 0)) {
-      result = subtract(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result.toFixed(2);
-      inputStorage = result;
-    }
-    if (splitInput.includes("*", 0)) {
-      result = multiply(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result.toFixed(2);
-      inputStorage = result;
-    }
-    if (splitInput.includes("/", 0)) {
-      result = divide(parseFloat(splitInput[0]), parseFloat(splitInput[2]));
-      display.textContent = result.toFixed(2);
-      inputStorage = result;
-    }
+  if (splitInput.includes("+")) {
+    result = add(numA, numB);
+    display.textContent = result.toFixed(2);
+    inputStorage = result;
+  }
+  if (splitInput.includes("-")) {
+    result = subtract(numA, numB);
+    display.textContent = result.toFixed(2);
+    inputStorage = result;
+  }
+  if (splitInput.includes("*")) {
+    result = multiply(numA, numB);
+    display.textContent = result.toFixed(2);
+    inputStorage = result;
+  }
+  if (splitInput.includes("/")) {
+    result = divide(numA, numB);
+    display.textContent = result.toFixed(2);
+    inputStorage = result;
   }
 }
