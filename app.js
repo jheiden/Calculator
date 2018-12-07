@@ -5,11 +5,12 @@ let result = 0;
 
 const display = document.querySelector(".h2_display");
 
+// TODO ** Add propagation and bubbling => remove separate eventListeners **
+
 const nums = document.querySelectorAll(".num");
 nums.forEach(num =>
   num.addEventListener("click", () => {
     // Populates display / valuestorage with numbers
-
     inputStorage += num.textContent;
     display.textContent += num.textContent;
   })
@@ -21,8 +22,11 @@ backspacebt.addEventListener("click", () => backspace());
 const operators = document.querySelectorAll(".operator");
 operators.forEach(oper => {
   oper.addEventListener("click", () => {
+
     // Populates display / valuestorage with operators
-  
+    // TODO ** Need to find an expression to detect if var. has operator or not, if true => invoke calculate on operator click **
+    //  calculate();
+    
     inputStorage += oper.textContent;
     display.textContent += oper.textContent;
   });
@@ -36,6 +40,20 @@ equalsbtn.addEventListener("click", () => {
 const clearbtn = document.querySelector(".clearbtn");
 clearbtn.addEventListener("click", () => {
   clear();
+});
+
+window.addEventListener('keydown', (e) => {
+  console.log(e.key);
+
+  let currentKey = e.key.toString();
+  
+  display.textContent = currentKey;
+
+  // if (e.key === 'a') {
+  //   alert(e.key)
+  // }
+  // return;
+
 });
 
 // clear display , clear values
@@ -57,16 +75,23 @@ function backspace() {
   }
 }
 
-// Works like a "transit" to calculate(). Errorchecking before invoking calculate
+// Works like a "transit" to calculate(). Checking for invalid input prior to invoking calculate
 function evaluateInput() {
   const correctInput = inputStorage.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/);
   if (!correctInput) {
+    // ** Insert transition here **
     display.textContent = "Error";
     inputStorage = "";
     return;
   } else {
     calculate();
   }
+}
+
+function detectAndInvoke () {
+  // * Invoke this function at given keypress => if function detects 2 operators => invoke calculate. If false => return..
+  // triggered at buttonclicks.
+
 }
 
 // Basic functionality
@@ -80,11 +105,12 @@ function prettyResult(aStr) {
 }
 
 // Function flow controls where to route the call depending on operator value in global function.
-
 function calculate() {
   const splitInput = inputStorage.split(/([-+/*])/gi);
   const numA = parseFloat(splitInput[0]);
   const numB = parseFloat(splitInput[2]);
+
+  // Splits string into array => convert numerical to floats => storing numbers in separate variables.
 
   if (splitInput.includes("+")) {
     result = add(numA, numB);

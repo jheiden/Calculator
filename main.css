@@ -1,111 +1,96 @@
-
-
-body, html {
-    margin: 0px;
-    font-family: sans-serif;
-    
-}
-
-#content {
-   padding-bottom: 50px;
-   padding-top: 50px;
-   background: linear-gradient(to right bottom, #cf9e43c7, #499699);
-   
-
+body,
+html {
+  margin: 0px;
+  font-family: sans-serif;
 }
 
 button {
-    border: 2px solid black;
-    
+  border: 2px solid black;
 }
 
 p {
-    font-weight: bolder; font-size: 14px;
-    border: 1px solid black; 
-    box-shadow: 2px 2px 4px 2px rgba(19, 18, 19, 0.822);
+  font-weight: bolder;
+  font-size: 14px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 4px 2px rgba(19, 18, 19, 0.822);
 }
 
-
-
+#content {
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background: linear-gradient(to right bottom, #cf9e43c7, #499699);
+  }
+  
 .display {
-    height: 20px;
-    grid-column: 1 / -1;
-    padding: 30px;
-    background: #3b3b1be3;
-    border: 3px solid black;
-    border-radius: 10px;
-    margin-bottom: 10px;
+  height: 20px;
+  grid-column: 1 / -1;
+  padding: 30px;
+  background: #3b3b1be3;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .h2_display {
-    padding: 0px;
-    font-size: 40px;
-    margin: 0px;
-    color: blanchedalmond;
-    overflow: hidden;
-    
+  padding: 0px;
+  font-size: 40px;
+  margin: 0px;
+  color: blanchedalmond;
+  overflow: hidden;
 }
-
-
 
 .buttonwrap {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr) ); grid-template-rows: repeat(6, 1fr); grid-gap: 10px;
-    width: 380px; height: 480px;
-    margin-left: 32%;
-    padding: 20px;
-    background: #2b77a3e3;
-    border-radius: 20px;
-    box-shadow: 4px 2px 4px 4px rgba(19, 18, 19, 0.822);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 10px;
+  width: 380px;
+  height: 480px;
+  margin-left: 32%;
+  padding: 20px;
+  background: #2b77a3e3;
+  border-radius: 20px;
+  box-shadow: 4px 2px 4px 4px rgba(19, 18, 19, 0.822);
 }
-
-
 
 .funcbtn {
-    border-radius: 10px;
-    background-color: #a17026d5;
-    box-shadow: 2px 2px #252E2B;
+  border-radius: 10px;
+  background-color: #a17026d5;
+  box-shadow: 2px 2px #252e2b;
 }
-
 
 .num {
-    border-radius: 10px;
-    padding: 5px;
-    box-shadow: 2px 2px #252E2B;
-    background: rgba(50, 92, 107, 0.699);
-    font-size: 16px;
-    font-weight: bolder;
-    
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 2px 2px #252e2b;
+  background: rgba(50, 92, 107, 0.699);
+  font-size: 16px;
+  font-weight: bolder;
 }
-
 
 .operator {
-    border-radius: 10px;
-    background: #0f7174c0;
-    box-shadow: 2px 2px #252E2B;
-    padding: 5px;
-}
-    
-.equals {
-    border-radius: 10px;
-    background: #1a29af44;
-    box-shadow: 2px 2px #252E2B;
-    padding: 5px;
-    grid-column: 2 / 4;
+  border-radius: 10px;
+  background: #0f7174c0;
+  box-shadow: 2px 2px #252e2b;
+  padding: 5px;
 }
 
+.equals {
+  border-radius: 10px;
+  background: #1a29af44;
+  box-shadow: 2px 2px #252e2b;
+  padding: 5px;
+  grid-column: 2 / 4;
+}
 
 .num:hover {
-    opacity: 0.6;
-
+  opacity: 0.6;
 }
 
 .funcbtn:hover {
-    opacity: 0.6;
-
+  opacity: 0.6;
 }
 
 .operator:hover {
-    opacity: 0.6;
-
+  opacity: 0.6;
 }
