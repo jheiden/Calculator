@@ -15,21 +15,20 @@ buttonwrap.addEventListener("click", getInput, false);
 // target of event = event.target, target for eventlistener = event.currentTarget.
 
 function getInput(event) {
-    
+  if (event.target !== event.currentTarget) {
     if (event.target.textContent === "CLEAR") {
       clear();
     } else if (event.target.textContent === "DEL") {
       backspace();
     } else if (event.target.textContent === "=") {
-      calculate();
+      evaluateInput();
     } else {
-    inputStorage += event.target.textContent;
-    display.textContent += event.target.textContent;
+      inputStorage += event.target.textContent;
+      display.textContent += event.target.textContent;
+    }
   }
-     event.stopPropagation();
+  event.stopPropagation();
 }
-
-
 
 window.addEventListener("keydown", event => {
   console.log(event.key);
