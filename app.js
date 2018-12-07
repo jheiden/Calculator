@@ -7,53 +7,40 @@ const display = document.querySelector(".h2_display");
 
 // TODO ** Add propagation and bubbling => remove separate eventListeners **
 
-const nums = document.querySelectorAll(".num");
-nums.forEach(num =>
-  num.addEventListener("click", () => {
-    // Populates display / valuestorage with numbers
-    inputStorage += num.textContent;
-    display.textContent += num.textContent;
-  })
-);
+const buttonwrap = document.querySelector(".buttonwrap");
+buttonwrap.addEventListener("click", getInput, false);
 
-const backspacebt = document.querySelector(".bspace");
-backspacebt.addEventListener("click", () => backspace());
+// The eventlistener. Will be called each time the buttonwrap element is clicked (and also children contained in..)
+// We only need click events on children so the if statement prevents code from being run if event click is from the eventlistener target
+// target of event = event.target, target for eventlistener = event.currentTarget.
 
-const operators = document.querySelectorAll(".operator");
-operators.forEach(oper => {
-  oper.addEventListener("click", () => {
-
-    // Populates display / valuestorage with operators
-    // TODO ** Need to find an expression to detect if var. has operator or not, if true => invoke calculate on operator click **
-    //  calculate();
+function getInput(event) {
     
-    inputStorage += oper.textContent;
-    display.textContent += oper.textContent;
-  });
-});
+    if (event.target.textContent === "CLEAR") {
+      clear();
+    } else if (event.target.textContent === "DEL") {
+      backspace();
+    } else if (event.target.textContent === "=") {
+      calculate();
+    } else {
+    inputStorage += event.target.textContent;
+    display.textContent += event.target.textContent;
+  }
+     event.stopPropagation();
+}
 
-const equalsbtn = document.querySelector(".equals");
-equalsbtn.addEventListener("click", () => {
-  evaluateInput();
-});
 
-const clearbtn = document.querySelector(".clearbtn");
-clearbtn.addEventListener("click", () => {
-  clear();
-});
 
-window.addEventListener('keydown', (e) => {
-  console.log(e.key);
+window.addEventListener("keydown", event => {
+  console.log(event.key);
 
-  let currentKey = e.key.toString();
-  
-  display.textContent = currentKey;
+  let currentKey = event.key.toString();
+  //display.textContent = currentKey;
 
-  // if (e.key === 'a') {
-  //   alert(e.key)
+  // if (event.key === 'a') {
+  //   alert(event.key)
   // }
   // return;
-
 });
 
 // clear display , clear values
@@ -88,10 +75,9 @@ function evaluateInput() {
   }
 }
 
-function detectAndInvoke () {
+function detectAndInvoke() {
   // * Invoke this function at given keypress => if function detects 2 operators => invoke calculate. If false => return..
   // triggered at buttonclicks.
-
 }
 
 // Basic functionality
