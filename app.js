@@ -4,10 +4,10 @@ let inputStorage = "";
 let result = 0;
 
 
-
 const display = document.querySelector(".h2_display");
 const buttonwrap = document.querySelector(".buttonwrap");
 buttonwrap.addEventListener("click", getInput, false); // eventlistener on grid container.
+window.addEventListener("keydown", onKeyPress);
 
 
 function getInput(event) {
@@ -27,17 +27,6 @@ function getInput(event) {
   }
   event.stopPropagation();
 }
-
-window.addEventListener("keydown", event => {
-  console.log(event.key);
-  let currentKey = event.key.toString();
-  //display.textContent = currentKey;
-
-  // if (event.key === 'a') {
-  //   alert(event.key)
-  // }
-  // return;
-});
 
 // clear display , clear values
 function clear() {
@@ -80,7 +69,6 @@ function detectAndInvoke() {
 }
 
 
-
 // Basic functionality
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -115,4 +103,19 @@ function calculate() {
     display.textContent = result.toFixed(2);
     inputStorage = result;
   }
+}
+
+function onKeyPress (event) {
+  switch(event.key) {
+    case 'Enter' : calculate;
+    
+
+
+
+
+  }
+
+
+
+
 }
