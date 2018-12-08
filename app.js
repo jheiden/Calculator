@@ -3,15 +3,15 @@
 let inputStorage = "";
 let result = 0;
 
-const display = document.querySelector(".h2_display");
 
+
+const display = document.querySelector(".h2_display");
 const buttonwrap = document.querySelector(".buttonwrap");
 buttonwrap.addEventListener("click", getInput, false); // eventlistener on grid container.
 
 
-// We only need click events on children so the if statement prevents code from being run if event click is from the eventlistener target
-// target of event = event.target, target for eventlistener = event.currentTarget.
 function getInput(event) {
+  
   if (event.target !== event.currentTarget) { // avoid running any code if parent is clicked.
     if (event.target.textContent === "CLEAR") {
       clear();
@@ -20,6 +20,7 @@ function getInput(event) {
     } else if (event.target.textContent === "=") {
       evaluateInput();
     } else {
+      detectAndInvoke();
       inputStorage += event.target.textContent;
       display.textContent += event.target.textContent;
     }
@@ -72,19 +73,19 @@ function evaluateInput() {
 }
 
 function detectAndInvoke() {
-  // * Invoke this function at given buttonclick => if function detects 2 operators => invoke calculate. If false => return..
-  // triggered at buttonclicks.
+  if (typeof inputStorage === 'number') {
+    return;
 }
+  inputStorage.match(/\d[\+\-\*\/]\d/) ? calculate() : null;
+}
+
+
 
 // Basic functionality
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
-
-function prettyResult(aStr) {
-  // IDK yet what to do with this function
-}
 
 // Function flow controls where to route the call depending on operator value in global function.
 function calculate() {
