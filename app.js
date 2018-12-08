@@ -3,14 +3,15 @@
 let inputStorage = "";
 let result = 0;
 
+const displayWindow = document.querySelector(".display")
 const display = document.querySelector(".h2_display");
 const buttonwrap = document.querySelector(".buttonwrap");
-buttonwrap.addEventListener("click", getInput, false); // eventlistener on grid container.
+buttonwrap.addEventListener("click", getInput, false); // Eventlistener on grid container.
 window.addEventListener("keydown", onKeyPress);
 
 function getInput(event) {
   if (event.target !== event.currentTarget) {
-    // avoid running any code if parent is clicked.
+    // Avoid running any code if parent is clicked.
     if (event.target.textContent === "CLEAR") {
       clear();
     } else if (event.target.textContent === "DEL") {
@@ -23,7 +24,6 @@ function getInput(event) {
       display.textContent += event.target.textContent;
     }
   }
-
   event.stopPropagation();
 }
 
@@ -32,7 +32,6 @@ function getKeyboardInput(val) {
   display.textContent += val;
 }
 
-// clear display , clear values
 function clear() {
   display.textContent = "";
   inputStorage = "";
@@ -51,13 +50,13 @@ function backspace() {
   }
 }
 
-// Works like a "transit" to calculate(). Checking for invalid input prior to invoking calculate
+// Works like a "transit" to calculate(). Checking for invalid input prior to invoking calculate.
 function evaluateInput() {
   const correctInput = inputStorage.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/);
   if (!correctInput) {
     // ** Insert transition here **
     display.textContent = "Error";
-    display.classList.add("error");
+    // displayWindow.classList.add("error");
     inputStorage = "";
     return;
   } else {
@@ -85,7 +84,6 @@ function calculate() {
   const numB = parseFloat(splitInput[2]);
 
   // Splits string into array => convert numerical to floats => storing numbers in separate variables.
-
   if (splitInput.includes("+")) {
     result = add(numA, numB);
     display.textContent = result.toFixed(2);
@@ -127,6 +125,9 @@ function onKeyPress(event) {
       break;
     case "Backspace":
       backspace();
+      break;
+    case ".":
+      getKeyboardInput(event.key);
       break;
     case "0":
       getKeyboardInput(event.key);
