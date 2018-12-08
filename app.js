@@ -5,17 +5,14 @@ let result = 0;
 
 const display = document.querySelector(".h2_display");
 
-// TODO ** Add propagation and bubbling => remove separate eventListeners **
-
 const buttonwrap = document.querySelector(".buttonwrap");
-buttonwrap.addEventListener("click", getInput, false);
+buttonwrap.addEventListener("click", getInput, false); // eventlistener on grid container.
 
-// The eventlistener. Will be called each time the buttonwrap element is clicked (and also children contained in..)
+
 // We only need click events on children so the if statement prevents code from being run if event click is from the eventlistener target
 // target of event = event.target, target for eventlistener = event.currentTarget.
-
 function getInput(event) {
-  if (event.target !== event.currentTarget) {
+  if (event.target !== event.currentTarget) { // avoid running any code if parent is clicked.
     if (event.target.textContent === "CLEAR") {
       clear();
     } else if (event.target.textContent === "DEL") {
@@ -32,7 +29,6 @@ function getInput(event) {
 
 window.addEventListener("keydown", event => {
   console.log(event.key);
-
   let currentKey = event.key.toString();
   //display.textContent = currentKey;
 
@@ -75,7 +71,7 @@ function evaluateInput() {
 }
 
 function detectAndInvoke() {
-  // * Invoke this function at given keypress => if function detects 2 operators => invoke calculate. If false => return..
+  // * Invoke this function at given buttonclick => if function detects 2 operators => invoke calculate. If false => return..
   // triggered at buttonclicks.
 }
 

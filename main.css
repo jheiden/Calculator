@@ -41,7 +41,7 @@ p {
 
 .buttonwrap {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 10px;
   width: 380px;
@@ -75,12 +75,13 @@ p {
   padding: 5px;
 }
 
+
 .equals {
   border-radius: 10px;
   background: #1a29af44;
   box-shadow: 2px 2px #252e2b;
   padding: 5px;
-  grid-column: 2 / 4;
+  grid-column: span 2;
 }
 
 .num:hover {
@@ -94,3 +95,4 @@ p {
 .operator:hover {
   opacity: 0.6;
 }
+
