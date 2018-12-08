@@ -37,6 +37,7 @@ p {
   margin: 0px;
   color: blanchedalmond;
   overflow: hidden;
+  text-align: center;
 }
 
 .buttonwrap {
@@ -75,7 +76,6 @@ p {
   padding: 5px;
 }
 
-
 .equals {
   border-radius: 10px;
   background: #1a29af44;
@@ -96,3 +96,7 @@ p {
   opacity: 0.6;
 }
 
+.error {
+  background: #b45313c0;
+
+}

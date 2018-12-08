@@ -63,6 +63,7 @@ function evaluateInput() {
   if (!correctInput) {
     // ** Insert transition here **
     display.textContent = "Error";
+    display.classList.add('error')
     inputStorage = "";
     return;
   } else {
