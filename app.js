@@ -3,16 +3,14 @@
 let inputStorage = "";
 let result = 0;
 
-
 const display = document.querySelector(".h2_display");
 const buttonwrap = document.querySelector(".buttonwrap");
 buttonwrap.addEventListener("click", getInput, false); // eventlistener on grid container.
 window.addEventListener("keydown", onKeyPress);
 
-
 function getInput(event) {
-  
-  if (event.target !== event.currentTarget) { // avoid running any code if parent is clicked.
+  if (event.target !== event.currentTarget) {
+    // avoid running any code if parent is clicked.
     if (event.target.textContent === "CLEAR") {
       clear();
     } else if (event.target.textContent === "DEL") {
@@ -25,7 +23,13 @@ function getInput(event) {
       display.textContent += event.target.textContent;
     }
   }
+
   event.stopPropagation();
+}
+
+function getKeyboardInput(val) {
+  inputStorage += val;
+  display.textContent += val;
 }
 
 // clear display , clear values
@@ -53,7 +57,7 @@ function evaluateInput() {
   if (!correctInput) {
     // ** Insert transition here **
     display.textContent = "Error";
-    display.classList.add('error')
+    display.classList.add("error");
     inputStorage = "";
     return;
   } else {
@@ -62,12 +66,11 @@ function evaluateInput() {
 }
 
 function detectAndInvoke() {
-  if (typeof inputStorage === 'number') {
+  if (typeof inputStorage === "number") {
     return;
-}
+  }
   inputStorage.match(/\d[\+\-\*\/]\d/) ? calculate() : null;
 }
-
 
 // Basic functionality
 const add = (a, b) => a + b;
@@ -105,17 +108,55 @@ function calculate() {
   }
 }
 
-function onKeyPress (event) {
-  switch(event.key) {
-    case 'Enter' : calculate;
-    
-
-
-
-
+function onKeyPress(event) {
+  switch (event.key) {
+    case "Enter":
+      calculate();
+      break;
+    case "+":
+      getKeyboardInput(event.key);
+      break;
+    case "-":
+      getKeyboardInput(event.key);
+      break;
+    case "*":
+      getKeyboardInput(event.key);
+      break;
+    case "/":
+      getKeyboardInput(event.key);
+      break;
+    case "Backspace":
+      backspace();
+      break;
+    case "0":
+      getKeyboardInput(event.key);
+      break;
+    case "1":
+      getKeyboardInput(event.key);
+      break;
+    case "2":
+      getKeyboardInput(event.key);
+      break;
+    case "3":
+      getKeyboardInput(event.key);
+      break;
+    case "4":
+      getKeyboardInput(event.key);
+      break;
+    case "5":
+      getKeyboardInput(event.key);
+      break;
+    case "6":
+      getKeyboardInput(event.key);
+      break;
+    case "7":
+      getKeyboardInput(event.key);
+      break;
+    case "8":
+      getKeyboardInput(event.key);
+      break;
+    case "9":
+      getKeyboardInput(event.key);
+      break;
   }
-
-
-
-
 }
