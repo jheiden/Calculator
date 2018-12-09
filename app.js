@@ -1,9 +1,9 @@
-// NTS : Build separate functions for evaluating user input and return error if wrong..
+
 
 let inputStorage = "";
 let result = 0;
 
-const displayWindow = document.querySelector(".display")
+const displayWindow = document.querySelector(".display");
 const display = document.querySelector(".h2_display");
 const buttonwrap = document.querySelector(".buttonwrap");
 buttonwrap.addEventListener("click", getInput, false); // Eventlistener on grid container.
@@ -19,12 +19,20 @@ function getInput(event) {
     } else if (event.target.textContent === "=") {
       evaluateInput();
     } else {
-      detectAndInvoke();
+      detectAndInvoke(event.target.textContent);
       inputStorage += event.target.textContent;
       display.textContent += event.target.textContent;
     }
   }
   event.stopPropagation();
+}
+
+function detectAndInvoke(singleInput) {
+  if (singleInput === "+" || singleInput === "-" || singleInput === "*" || singleInput === "/") {
+    inputStorage.match(/\d[\+\-\*\/]\d/) ? calculate() : null;
+  } else {
+    return;
+  }
 }
 
 function getKeyboardInput(val) {
@@ -36,6 +44,7 @@ function clear() {
   display.textContent = "";
   inputStorage = "";
 }
+
 
 function backspace() {
   if (typeof inputStorage === "number") {
@@ -52,7 +61,8 @@ function backspace() {
 
 // Works like a "transit" to calculate(). Checking for invalid input prior to invoking calculate.
 function evaluateInput() {
-  const correctInput = inputStorage.match(/^(\d+[\+\-\*\/\.]{1})+\d+$/);
+  const correctInput = inputStorage.match(/^(-|\d+[\+\-\*\/\.]{1})+\d+$/);
+  
   if (!correctInput) {
     // ** Insert transition here **
     display.textContent = "Error";
@@ -62,13 +72,6 @@ function evaluateInput() {
   } else {
     calculate();
   }
-}
-
-function detectAndInvoke() {
-  if (typeof inputStorage === "number") {
-    return;
-  }
-  inputStorage.match(/\d[\+\-\*\/]\d/) ? calculate() : null;
 }
 
 // Basic functionality
@@ -85,23 +88,23 @@ function calculate() {
 
   // Splits string into array => convert numerical to floats => storing numbers in separate variables.
   if (splitInput.includes("+")) {
-    result = add(numA, numB);
-    display.textContent = result.toFixed(2);
+    result = add(numA, numB).toFixed(2).toString();
+    display.textContent = result;
     inputStorage = result;
   }
   if (splitInput.includes("-")) {
-    result = subtract(numA, numB);
-    display.textContent = result.toFixed(2);
+    result = subtract(numA, numB).toFixed(2).toString();
+    display.textContent = result;
     inputStorage = result;
   }
   if (splitInput.includes("*")) {
-    result = multiply(numA, numB);
-    display.textContent = result.toFixed(2);
+    result = multiply(numA, numB).toFixed(2).toString();
+    display.textContent = result;
     inputStorage = result;
   }
   if (splitInput.includes("/")) {
-    result = divide(numA, numB);
-    display.textContent = result.toFixed(2);
+    result = divide(numA, numB).toFixed(2).toString();
+    display.textContent = result;
     inputStorage = result;
   }
 }
@@ -109,19 +112,23 @@ function calculate() {
 function onKeyPress(event) {
   switch (event.key) {
     case "Enter":
-      calculate();
+      evaluateInput();
       break;
     case "+":
       getKeyboardInput(event.key);
+      detectAndInvoke(event.key);
       break;
     case "-":
       getKeyboardInput(event.key);
+      detectAndInvoke(event.key);
       break;
     case "*":
       getKeyboardInput(event.key);
+      detectAndInvoke(event.key);
       break;
     case "/":
       getKeyboardInput(event.key);
+      detectAndInvoke(event.key);
       break;
     case "Backspace":
       backspace();
